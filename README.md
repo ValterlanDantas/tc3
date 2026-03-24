@@ -77,10 +77,4 @@ Inclua a pasta `images/` no repositório (faça commit dos `.png` junto com o `R
 - **Filtro mínimo de voos:** linha com `TOTAL_VOOS >= 100`.
 - **Faixa de K no cotovelo:** `K_range = range(2, 11)`.
 
-## Licença
-
-Defina a licença do repositório conforme sua instituição ou preferência (por exemplo MIT, CC-BY ou uso apenas educacional).
-
----
-
 *Projeto de exemplo para estudo de machine learning / FIAP — módulo de dados.*
