@@ -1,0 +1,49 @@
+# Pasta legada / experimentos antigos
+old/
+
+# Ambiente virtual Python
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dados e arquivos grandes (não versionar datasets)
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.npz
+*.npy
+
+# Arquivos compactados / binários pesados
+*.zip
+*.gz
+*.tgz
+*.tar
+*.7z
+*.rar
+
+# Sistema / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
