@@ -4,15 +4,22 @@ Demonstração didática de **aprendizado não supervisionado** aplicada a dados
 
 O pipeline está implementado em [`exemplo_clustering_visual.py`](exemplo_clustering_visual.py).
 
-## O que o script faz
+## Passos do script
 
-1. Carrega `flights.csv` e `airports.csv` e agrega métricas por aeroporto de **origem**.
-2. Constrói features: total de voos, atraso médio na partida, taxa de cancelamento, distância média e taxa de desvios (apenas aeroportos com ≥ 100 voos e sem valores faltantes).
-3. Normaliza as features com `StandardScaler` (evita que variáveis em escalas diferentes dominem o clustering).
-4. Avalia **K** de 2 a 10 com **método do cotovelo** (inércia) e **silhouette score**.
-5. Aplica **K-Means** com **K = 4** (fixo no exemplo, após análise visual dos gráficos).
-6. Projeta os dados em 2D com **PCA** e plota clusters com centroides.
-7. Interpreta cada cluster (rótulos como “hubs eficientes”, “regionais pontuais”, etc.) e compara médias por cluster em gráficos de barras.
+As mensagens `PASSO 1` … `PASSO 10` aparecem no terminal ao executar o arquivo. Resumo alinhado ao código:
+
+| Passo | O que acontece |
+|-------|----------------|
+| **1 — Carregar e preparar os dados** | Lê `flights.csv` e `airports.csv` com pandas e mostra quantidade de voos e de aeroportos. |
+| **2 — Criar features por aeroporto** | Agrega por `ORIGIN_AIRPORT`: contagem de voos, média de `DEPARTURE_DELAY`, médias de `CANCELLED`, `DISTANCE` e `DIVERTED`. Mantém só aeroportos com **≥ 100** voos e remove linhas com **NaN**. |
+| **3 — Normalizar os dados** | Aplica `StandardScaler` às cinco features (`TOTAL_VOOS`, `ATRASO_MEDIO`, `TAXA_CANCELAMENTO`, `DISTANCIA_MEDIA`, `TAXA_DESVIO`) para nenhuma escala dominar o K-Means. |
+| **4 — Número de clusters (método do cotovelo)** | Para cada **K** de 2 a 10, treina K-Means, registra **inércia** e **silhouette score**. Gera o gráfico `images/exemplo_01_elbow_method.png` (cotovelo + silhouette). |
+| **5 — Aplicar K-Means** | Usa `optimal_k = 4`, `random_state=42`, `n_init=10`; adiciona a coluna `CLUSTER` e imprime silhouette e distribuição por cluster. |
+| **6 — Redução de dimensionalidade (PCA)** | `PCA(n_components=2)` sobre os dados já normalizados; imprime variância explicada por PC1 e PC2. |
+| **7 — Visualizar clusters em 2D** | Scatter das amostras e centroides no plano PCA; gráfico de barras da contagem por cluster. Salva `images/exemplo_02_clusters_visualizacao.png`. |
+| **8 — Interpretar os clusters** | Para cada cluster, médias nas **escalas originais** (não normalizadas), rótulo automático (ex.: hubs eficientes, regionais pontuais) e exemplos de códigos de aeroporto. |
+| **9 — Características por cluster** | Quatro subplots de barras (voos, atraso, cancelamento, distância média). Salva `images/exemplo_03_caracteristicas_clusters.png`. |
+| **10 — Insights e conclusões** | Resumo textual, interpretação do silhouette, variância do PCA e recomendações; lista os PNG em `images/`. |
 
 ## Requisitos
 
